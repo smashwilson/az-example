@@ -36,18 +36,18 @@ action "Tag Docker image" {
 
 action "Push ref tag" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Docker Registry", "Tag Docker image"]
+  needs = ["Docker Registry", "Tag Docker image", "Non-master branch"]
   args = "push quay.io/smashwilson/az-example:${IMAGE_REF}"
 }
 
 action "Push SHA tag" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Docker Registry", "Tag Docker image"]
+  needs = ["Docker Registry", "Tag Docker image", "Non-master branch"]
   args = "push quay.io/smashwilson/az-example:${IMAGE_SHA}"
 }
 
 action "Push latest tag" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Docker Registry", "Tag Docker image"]
+  needs = ["Docker Registry", "Tag Docker image", "Master branch"]
   args = "push quay.io/smashwilson/az-example:latest"
 }
