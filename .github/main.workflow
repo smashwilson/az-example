@@ -28,32 +28,26 @@ action "Build Docker image" {
   args = "build -t az-example ."
 }
 
-action "Tag latest" {
+action "Tag Docker image" {
   uses = "actions/docker/tag@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   needs = ["Master branch", "Build Docker image"]
-  args = "az-example quay.io/smashwilson/az-example --no-ref --no-sha"
-}
-
-action "Tag by ref and sha" {
-  uses = "actions/docker/tag@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Non-master branches", "Build Docker image"]
-  args = "az-example quay.io/smashwilson/az-example --no-latest"
+  args = "az-example quay.io/smashwilson/az-example"
 }
 
 action "Push ref tag" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Docker Registry", "Tag by ref and sha"]
+  needs = ["Docker Registry", "Tag Docker image"]
   args = "push quay.io/smashwilson/az-example:${IMAGE_REF}"
 }
 
 action "Push SHA tag" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Docker Registry", "Tag by ref and sha"]
+  needs = ["Docker Registry", "Tag Docker image"]
   args = "push quay.io/smashwilson/az-example:${IMAGE_SHA}"
 }
 
 action "Push latest tag" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Docker Registry", "Tag latest"]
+  needs = ["Docker Registry", "Tag Docker image"]
   args = "push quay.io/smashwilson/az-example:latest"
 }
