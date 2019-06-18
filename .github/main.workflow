@@ -30,7 +30,7 @@ action "Build Docker image" {
 
 action "Tag Docker image" {
   uses = "actions/docker/tag@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["Master branch", "Build Docker image"]
+  needs = ["Build Docker image"]
   args = "az-example quay.io/smashwilson/az-example"
 }
 
