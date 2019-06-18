@@ -9,4 +9,5 @@ end
 
 puts "ctrl-C or docker stop to exit."
 
+$stdout.flush
 loop { sleep 10000 }
