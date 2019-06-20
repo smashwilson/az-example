@@ -4,6 +4,6 @@ workflow "Build and push Docker container" {
 }
 
 action "Build" {
-  uses = "smashwilson/az-infra/actions/azbuild@action"
+  uses = "smashwilson/az-infra/actions/azbuild@master"
   secrets = ["DOCKER_REGISTRY_URL", "DOCKER_USERNAME", "DOCKER_PASSWORD"]
 }
