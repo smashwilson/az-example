@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 puts "Process started successfully."
+puts "Built from some-branch."
 
 puts "Environment variables available:"
 ENV.each do |key, value|
